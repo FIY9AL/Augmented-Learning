@@ -92,9 +92,9 @@ public class Math_Script : MonoBehaviour
     private string[] quiz_buttonsTextArray = new string[4];
     private int[] quiz_WordsQuestionsIndexes = new int[10];
     private bool quiz_nextQuestion = true;
-    private float timeRemaining1 = 3;
-    private float timeRemaining2 = 1;
-    private float timeRemaining3 = 100;
+    private float timeRemaining1 = 3; // Focused viewing page fade-out timer duration
+    private float timeRemaining2 = 1; // Next button fade-in timer duration
+    private float timeRemaining3 = 100; // Quiz timer duration
     // Private variables for accessing variables by string name
     private GameObject my3Dobject; 
     private TextMeshPro myTextObject;
@@ -595,9 +595,10 @@ public class Math_Script : MonoBehaviour
         else if (theButton == "Down_Left") Down_Left_Button_Plane.GetComponent<Renderer>().material.mainTexture = Focused_90dgree_Texture;
         else if (theButton == "Down_Right") Down_Right_Button_Plane.GetComponent<Renderer>().material.mainTexture = Focused_270dgree_Texture;
     }
+    // Introduction page
     public void PageLoader_1() // This function loads the gui elements of page number 1
     {
-        DisableNextButton(); // To fade in the next button after few moments
+        DisableNextButton(); // To fade-in the next button after few moments
         pageIndex = 1;
         Up_Title_Text.text = "Welcome to";
         Down_Title_Text.text = "Augmented Learning";
@@ -622,6 +623,7 @@ public class Math_Script : MonoBehaviour
         Retry_Button.enabled = false; Retry_Plane.SetActive(false); Retry_Text.text = " ";
         Circle_Plane.SetActive(false); Circle_Text.text = " ";
     }
+    // Select-subject page
     public void PageLoader_2() // This function loads the gui elements of page number 2
     {
         pageIndex = 2;
@@ -661,6 +663,7 @@ public class Math_Script : MonoBehaviour
             Right_Rectangle_Plane.GetComponent<Renderer>().material.mainTexture = Normal_Ractangle_Texture;
         }
     }
+    // Focused select-subject page
     public void PageLoader_3() // This function loads the gui elements of page number 3
     {
         pageIndex = 3;
@@ -682,6 +685,7 @@ public class Math_Script : MonoBehaviour
         }
         timerIsRunning1 = true; timeRemaining1 = 3; //Start timer, Set time duration
     }
+    // Select-type of playing page
     public void PageLoader_4() // This function loads the gui elements of page number 4
     {
         pageIndex = 4;
@@ -714,6 +718,7 @@ public class Math_Script : MonoBehaviour
             Right_Rectangle_Plane.GetComponent<Renderer>().material.mainTexture = Normal_Ractangle_Texture;
         }
     }
+    // Focused select-type of playing page
     public void PageLoader_5() // This function loads the gui elements of page number 5
     {
         pageIndex = 5;
@@ -734,9 +739,10 @@ public class Math_Script : MonoBehaviour
         }
         timerIsRunning1 = true; timeRemaining1 = 3; //Start timer, Set time duration
     }
+    // Math learn select first number page
     public void PageLoader_6() // This function loads the gui elements of page number 6
     {
-        DisableNextButton(); // To fade in the next button after few moments
+        DisableNextButton(); // To fade-in the next button after few moments
         pageIndex = 6;
         Up_Title_Text.text = " ";
         Middle_Title_Text.text = "First number?";
@@ -753,9 +759,10 @@ public class Math_Script : MonoBehaviour
         Up_Left_Button_Plane.GetComponent<Renderer>().material.mainTexture = Normal_90dgree_Texture;
         Up_Right_Button_Plane.GetComponent<Renderer>().material.mainTexture = Normal_270dgree_Texture;
     }
+    // Math learn select operator page
     public void PageLoader_7() // This function loads the gui elements of page number 7
     {
-        DisableNextButton(); // To fade in the next button after few moments
+        DisableNextButton(); // To fade-in the next button after few moments
         pageIndex = 7;
         Middle_Title_Text.text = "Operator?";
         my3Dobject = (GameObject)this.GetType().GetField("Number_" + firstNumber + "_3D_Learn").GetValue(this); my3Dobject.SetActive(false);
@@ -765,9 +772,10 @@ public class Math_Script : MonoBehaviour
         Up_Left_Button_Plane.GetComponent<Renderer>().material.mainTexture = Normal_90dgree_Texture;
         Up_Right_Button_Plane.GetComponent<Renderer>().material.mainTexture = Normal_270dgree_Texture;
     }
+    // Math learn select second number page
     public void PageLoader_8() // This function loads the gui elements of page number 8
     {
-        DisableNextButton(); // To fade in the next button after few moments
+        DisableNextButton(); // To fade-in the next button after few moments
         pageIndex = 8;
         Middle_Title_Text.text = "Second number?";
         my3Dobject = (GameObject)this.GetType().GetField(myOperatorArray[myOperatorArrayIndex] + "_3D").GetValue(this); my3Dobject.SetActive(false);
@@ -777,9 +785,10 @@ public class Math_Script : MonoBehaviour
         Up_Left_Button_Plane.GetComponent<Renderer>().material.mainTexture = Normal_90dgree_Texture;
         Up_Right_Button_Plane.GetComponent<Renderer>().material.mainTexture = Normal_270dgree_Texture;
     }
+    // Math learn result page
     public void PageLoader_9() // This function loads the gui elements of page number 9
     {
-        DisableRetryHomeButton(); // To fade in retry, home buttons after few moments
+        DisableRetryHomeButton(); // To fade-in retry, home buttons after few moments
         pageIndex = 9;
         Middle_Title_Text.text = "Results";
         my3Dobject = (GameObject)this.GetType().GetField("Number_" + secondNumber + "_3D_Learn").GetValue(this); my3Dobject.SetActive(false);
@@ -794,9 +803,10 @@ public class Math_Script : MonoBehaviour
         if (result_learn == 987654321) Circle_Text.text = "Undefined"; // Divison by zero 
         else Circle_Text.text = Convert.ToString(result_learn);
     }
+    // Start quiz ready page
     public void PageLoader_10() // This function loads the gui elements of page number 10
     {
-        DisableNextButton(); // To fade in the next button after few moments
+        DisableNextButton(); // To fade-in the next button after few moments
         pageIndex = 10;
         Up_Title_Text.text = " ";
         Middle_Title_Text.text = "Ready?";
@@ -809,6 +819,7 @@ public class Math_Script : MonoBehaviour
         Retry_Button.enabled = false; Retry_Plane.SetActive(false); Retry_Text.text = " ";
         Clock_3D.SetActive(false); Book2_3D.SetActive(false);
     }
+    // Math quiz page
     public void PageLoader_11() // This function loads the gui elements of page number 11
     {
         pageIndex = 11;
@@ -865,6 +876,7 @@ public class Math_Script : MonoBehaviour
         if (timeRemaining3 == 100) timerIsRunning3 = true; // To start timer at quiz begin 
         if (timerIsRunning3 == false) timerIsRunning3 = true; // To start timer from being pause 
     }
+    // Focused math quiz answer page
     public void PageLoader_12() // This function loads the gui elements of page number 12
     {
         pageIndex = 12;
@@ -893,6 +905,7 @@ public class Math_Script : MonoBehaviour
         Circle_Plane.SetActive(true); Circle_Text.text = quiz_userAnswer;
         timerIsRunning1 = true; timeRemaining1 = 3; //Start timer, Set time duration
     }
+    // Focused math quiz answer result page
     public void PageLoader_13() // This function loads the gui elements of page number 13
     {
         pageIndex = 13;
@@ -925,6 +938,7 @@ public class Math_Script : MonoBehaviour
         }
         timerIsRunning1 = true; timeRemaining1 = 3; //Start timer, Set time duration
     }
+    // Quiz finish page
     public void PageLoader_14() // This function loads the gui elements of page number 14
     {
         pageIndex = 14;
@@ -941,6 +955,7 @@ public class Math_Script : MonoBehaviour
         Score_Title_Text.text = " ";
         timerIsRunning1 = true; timeRemaining1 = 3; //Start timer, Set time duration
     }
+    // Quiz timeout page
     public void PageLoader_15() // This function loads the gui elements of page number 15
     {
         pageIndex = 15;
@@ -977,9 +992,10 @@ public class Math_Script : MonoBehaviour
         Circle_Plane.SetActive(false); Circle_Text.text = " ";
         timerIsRunning1 = true; timeRemaining1 = 3; //Start timer, Set time duration
     }
+    // Quiz result page
     public void PageLoader_16() // This function loads the gui elements of page number 16
     {
-        DisableRetryHomeButton(); // To fade in retry, home buttons after few moments
+        DisableRetryHomeButton(); // To fade-in retry, home buttons after few moments
         pageIndex = 16;
         Next_Button.enabled = false; Next_Plane.SetActive(false); Next_Text.text = " ";
         Middle_Title_Text.text = "Results";
@@ -987,9 +1003,10 @@ public class Math_Script : MonoBehaviour
         if (quiz_questionIndex == 11) Quiz_Result_Text.text = "Remaining Questions: 0\nTime Elapsed: " + Convert.ToString(100-Convert.ToInt32(timeRemaining3)) + " seconds\nYour Score: " + quiz_score * 10;
         else Quiz_Result_Text.text = "Remaining Questions: "+(10 - quiz_questionIndex)+"\nTime Elapsed: " + Convert.ToString(100-Convert.ToInt32(timeRemaining3)) + " seconds\nYour Score: " + quiz_score * 10;
     }
+    // Words learn choose-letter page
     public void PageLoader_17() // This function loads the gui elements of page number 17
     {
-        DisableNextButton(); // To fade in the next button after few moments
+        DisableNextButton(); // To fade-in the next button after few moments
         pageIndex = 17;
         Up_Title_Text.text = " ";
         Middle_Title_Text.text = "Choose Letter";
@@ -1009,9 +1026,10 @@ public class Math_Script : MonoBehaviour
         Up_Left_Button_Plane.GetComponent<Renderer>().material.mainTexture = Normal_90dgree_Texture;
         Up_Right_Button_Plane.GetComponent<Renderer>().material.mainTexture = Normal_270dgree_Texture;
     }
+    // Words learn result page
     public void PageLoader_18() // This function loads the gui elements of page number 18
     {
-        DisableRetryHomeButton(); // To fade in retry, home buttons after few moments
+        DisableRetryHomeButton(); // To fade-in retry, home buttons after few moments
         pageIndex = 18;
         Up_Title_Text.text = "Word start with " + Words_Array[myLetterArrayIndex, 0] + " is:";
         Middle_Title_Text.text = " ";
@@ -1023,6 +1041,7 @@ public class Math_Script : MonoBehaviour
         my3Dobject = (GameObject)this.GetType().GetField("" + Words_Array[myLetterArrayIndex, 1]).GetValue(this); my3Dobject.SetActive(true);
         Words_ObjectName_Text.text = Words_Array[myLetterArrayIndex, 2];
     }
+    // Words quiz page
     public void PageLoader_19() // This function loads the gui elements of page number 19
     {
         pageIndex = 19;
@@ -1063,6 +1082,7 @@ public class Math_Script : MonoBehaviour
         if (timeRemaining3 == 100) timerIsRunning3 = true; // To start timer at quiz begin 
         if (timerIsRunning3 == false) timerIsRunning3 = true; // To start timer from being pause 
     }
+    // Focused words learn answer page
     public void PageLoader_20() // This function loads the gui elements of page number 20
     {
         pageIndex = 20;
@@ -1079,6 +1099,7 @@ public class Math_Script : MonoBehaviour
         Words_ObjectName_Text.text = quiz_userAnswer;
         timerIsRunning1 = true; timeRemaining1 = 3; //Start timer, Set time duration
     }
+    // Focused words learn answer result page
     public void PageLoader_21() // This function loads the gui elements of page number 21
     {
         pageIndex = 21;
@@ -1160,7 +1181,7 @@ public class Math_Script : MonoBehaviour
         Rose_3D.SetActive(false); Strawberry_3D.SetActive(false); Turtle_3D.SetActive(false);
         Umbrella_3D.SetActive(false); Virus_3D.SetActive(false); Watermelon_3D.SetActive(false);
         Xylophone_3D.SetActive(false); Yacht_3D.SetActive(false); Zebra_3D.SetActive(false);
-        PageLoader_1(); // Start at page 1
+        PageLoader_1(); // Load page 1 (Starting page)
     }
     void Update() // Everything written inside this function will execute every second
     {
